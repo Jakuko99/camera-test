@@ -19,6 +19,8 @@
 #include <QUrl>
 #include <QString>
 #include <QQuickView>
+//#include <QtMultimedia/qcamera.h>
+
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +33,13 @@ int main(int argc, char *argv[])
     view->setSource(QUrl("qrc:/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();
+
+    /*camera = new QCamera; // need to figure how this works
+    viewfinder = new QCameraViewfinder;
+    camera->setViewfinder(viewfinder);
+    viewfinder->show();
+
+    camera->start();*/
 
     return app->exec();
 }

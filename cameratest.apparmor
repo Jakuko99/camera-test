@@ -3,7 +3,12 @@
         "camera",
         "audio",
         "video",
+        "usermetrics",
+        "content_exchange",
+        "content_exchange_source",
+        "location",
+        "sensors"
     ],
-
     "policy_version": 16.04
 }
+

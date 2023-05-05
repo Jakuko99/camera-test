@@ -16,7 +16,7 @@
 
 import QtQuick 2.12
 import Ubuntu.Components 1.3
-import QtMultimedia 5.4
+import QtMultimedia 5.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
@@ -32,17 +32,19 @@ MainView {
     width: units.gu(45)
     height: units.gu(75)
 
+    function addToModel(value, index, array) {
+        comboModel.append({text:value.displayName, obj: value}); // add cameras to model
+    }
+
     ListModel {
         id: comboModel
     }
 
     Page {
+        id: mainPage
         Component.onCompleted: function(){
-            cameras = QtMultimedia.availableCameras
-            console.log(cameras)
-            /*for (cam : cameras){
-                comboModel.append({text: cam.displayName})
-            }*/
+            let cameras = QtMultimedia.availableCameras
+            cameras.forEach(addToModel);
         }
 
         anchors.fill: parent
@@ -53,14 +55,26 @@ MainView {
         }
 
         ColumnLayout {
-            spacing: units.gu(2)
+            spacing: units.gu(1)
             anchors {
-                margins: units.gu(2)
+                margins: units.gu(1)
                 top: header.bottom
                 left: parent.left
                 right: parent.right
                 bottom: parent.bottom
             }
+
+            VideoOutput {
+                source: camera
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
+                Camera {
+                    id: camera
+                    // You can adjust various settings in here
+                }
+            }
+
             RowLayout{
                 Button {
                     id: activateButton
@@ -73,8 +87,6 @@ MainView {
             }
 
             RowLayout {
-                anchors.right: parent.right
-                anchors.left: parent.left
                 ComboBox{
                     id: cameras
                     Layout.fillWidth: true

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cameratest.jakub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-25 21:28+0200\n"
+"POT-Creation-Date: 2023-05-05 21:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/Main.qml:52 cameratest.desktop.in.h:1
+#: ../qml/Main.qml:54 cameratest.desktop.in.h:1
 msgid "Camera test"
 msgstr ""
