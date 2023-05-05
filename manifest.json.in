@@ -1,0 +1,15 @@
+{
+    "name": "cameratest.jakub",
+    "description": "Simple application for acessing additional phone cameras",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Camera test",
+    "hooks": {
+        "cameratest": {
+            "apparmor": "cameratest.apparmor",
+            "desktop":  "cameratest.desktop"
+        }
+    },
+    "version": "@BUILD_VERSION@",
+    "maintainer": "Jakub Krsko <jakubkrs@outlook.sk>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
