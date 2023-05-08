@@ -27,7 +27,7 @@ MainView {
     id: root
     objectName: 'mainView'
     applicationName: 'cameratest.jakub'
-    automaticOrientation: true
+    automaticOrientation: false
 
     width: units.gu(45)
     height: units.gu(75)
@@ -68,21 +68,27 @@ MainView {
                 source: camera
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                fillMode: Image.PreserveAspectCrop
+                focus: visible
+                //                orientation: {
+                //                    var angle = Screen.primaryOrientation == Qt.PortraitOrientation ? -90 : 0;
+                //                    angle += Screen.orientation == Qt.InvertedLandscapeOrientation ? 180 : 0;
+                //                    return angle;
+                //                }
+                orientation: 270 // only portrait orientation for now
 
                 Camera {
                     id: camera
-                    // You can adjust various settings in here
-                }
-            }
+                    focus.focusMode: Camera.FocusContinuous
+                    focus.focusPointMode: Camera.FocusPointAuto
+                    property alias currentZoom: camera.digitalZoom
 
-            RowLayout{
-                Button {
-                    id: activateButton
-                    text: "Activate preview"
-                }
-                Label{
-                    id: currentCamera
-                    text: "Current camera: 0"
+                    function startAndConfigure() {
+                        start();
+                        focus.focusMode = Camera.FocusContinuous
+                        focus.focusPointMode = Camera.FocusPointAuto
+                    }
+
                 }
             }
 
