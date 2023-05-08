@@ -33,11 +33,16 @@ MainView {
     height: units.gu(75)
 
     function addToModel(value, index, array) {
-        comboModel.append({text:value.displayName, obj: value}); // add cameras to model
+        comboModel.append({text:value.displayName}); // add cameras to model
+        availableCameras.append({name: value.displayName, object:value});
     }
 
     ListModel {
         id: comboModel
+    }
+
+    ListModel{
+        id: availableCameras
     }
 
     Page {
@@ -71,11 +76,11 @@ MainView {
                 fillMode: Image.PreserveAspectCrop
                 focus: visible
                 //                orientation: {
-                //                    var angle = Screen.primaryOrientation == Qt.PortraitOrientation ? -90 : 0;
-                //                    angle += Screen.orientation == Qt.InvertedLandscapeOrientation ? 180 : 0;
+                //                    var angle = Screen.primaryOrientation === Qt.PortraitOrientation ? -90 : 0;
+                //                    angle += Screen.orientation === Qt.InvertedLandscapeOrientation ? 180 : 0;
                 //                    return angle;
                 //                }
-                orientation: 270 // only portrait orientation for now
+                orientation: 270 // need to figure this out
 
                 Camera {
                     id: camera
@@ -102,6 +107,9 @@ MainView {
                 Button{
                     id: chooseButton
                     text: "Choose"
+                    onClicked: {
+                        camera.setCameraDevice(availableCameras[cameras.currentIndex].object); // problem with getting data from model
+                    }
                 }
             }
         }
