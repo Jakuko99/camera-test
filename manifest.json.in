@@ -1,12 +1,12 @@
 {
-    "name": "cameratest.jakub",
-    "description": "Simple application for acessing additional phone cameras",
+    "name": "camera-test.jakub",
+    "description": "simple app to acess other cameras of the phoen",
     "architecture": "@CLICK_ARCH@",
-    "title": "Camera test",
+    "title": "camera-test",
     "hooks": {
-        "cameratest": {
-            "apparmor": "cameratest.apparmor",
-            "desktop":  "cameratest.desktop"
+        "camera-test": {
+            "apparmor": "camera-test.apparmor",
+            "desktop":  "camera-test.desktop"
         }
     },
     "version": "@BUILD_VERSION@",

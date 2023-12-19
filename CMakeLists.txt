@@ -1,13 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(cameratest C CXX)
+project(camera-test C CXX)
 
 # Automatically create moc files
 set(CMAKE_AUTOMOC ON)
-
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Qml REQUIRED)
-find_package(Qt5Quick REQUIRED)
-find_package(Qt5QuickControls2 REQUIRED)
 
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
@@ -16,8 +11,8 @@ execute_process(
 )
 set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
-set(PROJECT_NAME "cameratest")
-set(FULL_PROJECT_NAME "cameratest.jakub")
+set(PROJECT_NAME "camera-test")
+set(FULL_PROJECT_NAME "camera-test.jakub")
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 
@@ -26,7 +21,7 @@ set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 if(DEFINED ENV{SDK_FRAMEWORK})
     set(CLICK_FRAMEWORK "$ENV{SDK_FRAMEWORK}")
 else()
-    set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.3")
+    set(CLICK_FRAMEWORK "ubuntu-sdk-20.04")
 endif()
 
 # This figures out the target architecture for use in the manifest file.
@@ -63,14 +58,11 @@ message(STATUS "Build version is: ${BUILD_VERSION}")
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
-install(FILES assets/logo.svg DESTINATION assets)
 
-qt5_add_resources(QT_RESOURCES qml/qml.qrc)
-qt5_add_resources(QT_RESOURCES assets/assets.qrc)
-add_executable(${PROJECT_NAME} main.cpp ${QT_RESOURCES})
-set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
-target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick Qt5::QuickControls2)
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(DIRECTORY assets DESTINATION ${DATA_DIR})
+install(DIRECTORY src DESTINATION ${DATA_DIR})
+
+install(DIRECTORY qml DESTINATION ${DATA_DIR})
 
 # Translations
 file(GLOB_RECURSE I18N_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/po qml/*.qml qml/*.js)
@@ -94,7 +86,6 @@ add_custom_target(${DESKTOP_FILE_NAME} ALL
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME} DESTINATION ${DATA_DIR})
 
 add_subdirectory(po)
-add_subdirectory(plugins)
 
 # Make source files visible in qtcreator
 file(GLOB_RECURSE PROJECT_SRC_FILES
