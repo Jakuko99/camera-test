@@ -1,6 +1,6 @@
 {
     "name": "camera-test.jakub",
-    "description": "simple app to acess other cameras of the phoen",
+    "description": "simple app to acess other cameras of the phone",
     "architecture": "@CLICK_ARCH@",
     "title": "camera-test",
     "hooks": {
@@ -11,5 +11,5 @@
     },
     "version": "@BUILD_VERSION@",
     "maintainer": "Jakub Krsko <jakubkrs@outlook.sk>",
-    "framework" : "@CLICK_FRAMEWORK@"
+    "framework" : "ubuntu-sdk-16.04.5"
 }
