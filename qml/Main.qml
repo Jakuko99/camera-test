@@ -32,7 +32,7 @@ MainView {
 
     function addToModel(value, index, array) {
         comboModel.append({text:value.displayName}); // add cameras to model
-        availableCameras.append({name: value.displayName, object:value});
+        availableCameras.append(value.deviceId);
     }
 
     ListModel {
@@ -81,7 +81,7 @@ MainView {
                 orientation: 270 // need to figure this out
 
                 Camera {
-                    id: camera
+                    id: camera                    
                     focus.focusMode: Camera.FocusContinuous
                     focus.focusPointMode: Camera.FocusPointAuto
                     property alias currentZoom: camera.digitalZoom
@@ -112,7 +112,7 @@ MainView {
                     text: "Choose"
                     onClicked: {
                         currentCamera.text = cameras.currentText;
-                        camera.setCameraDevice(availableCameras[cameras.currentIndex].object); // problem with getting data from model
+                        camera.deviceId = cameras.currentIndex;
                     }
                 }
             }

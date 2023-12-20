@@ -2,7 +2,7 @@
     "name": "camera-test.jakub",
     "description": "simple app to acess other cameras of the phone",
     "architecture": "@CLICK_ARCH@",
-    "title": "camera-test",
+    "title": "Camera Test",
     "hooks": {
         "camera-test": {
             "apparmor": "camera-test.apparmor",
