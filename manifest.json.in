@@ -9,7 +9,7 @@
             "desktop":  "camera-test.desktop"
         }
     },
-    "version": "0.0.2",
+    "version": "0.0.2f",
     "maintainer": "Jakub Krsko <jakubkrs@outlook.sk>",
-    "framework" : "ubuntu-sdk-16.04.5"
+    "framework" : "ubuntu-sdk-20.04"
 }
