@@ -1,5 +1,3 @@
-
-
 /*
              * Copyright (C) 2023  Jakub Krsko
              *
@@ -77,12 +75,7 @@ MainView {
                 Layout.fillWidth: true
                 fillMode: Image.PreserveAspectCrop
                 focus: visible
-                //                orientation: {
-                //                    var angle = Screen.primaryOrientation === Qt.PortraitOrientation ? -90 : 0;
-                //                    angle += Screen.orientation === Qt.InvertedLandscapeOrientation ? 180 : 0;
-                //                    return angle;
-                //                }
-                orientation: 270 // need to figure this out
+                orientation: 270
 
                 Camera {
                     id: camera
@@ -94,7 +87,7 @@ MainView {
                         start()
                         focus.focusMode = Camera.FocusContinuous
                         focus.focusPointMode = Camera.FocusPointAuto
-                    }                  
+                    }
                 }
             }
 
